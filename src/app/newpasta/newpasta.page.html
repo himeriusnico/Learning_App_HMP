@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Pasta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Name"
+        labelPlacement="stacked"
+        placeholder="Enter Pasta Name"
+        [(ngModel)]="new_name"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea
+        label="Description"
+        labelPlacement="stacked"
+        placeholder="Enter Descriptipn"
+        rows="3"
+        [(ngModel)]="new_desc"
+      ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Image"
+        labelPlacement="stacked"
+        placeholder="Enter URL Image"
+        [(ngModel)]="new_url"
+      >
+      </ion-input>
+      <ion-img [src]="new_url" style="width: 100px"> </ion-img>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Price"
+        labelPlacement="stacked"
+        placeholder="Choose Price"
+        [(ngModel)]="new_price"
+      >
+        <ion-select-option *ngFor="let price of arr_price" [value]="price">
+          {{price}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Is Spicy?</ion-label>
+      <ion-checkbox [(ngModel)]="is_spicy"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" id="btnSubmit" (click)="submitPasta()"
+    >Submit</ion-button
+  >
+  <ion-alert
+    trigger="btnSubmit"
+    header="Add pasta"
+    message="Data Succesfullyy Stored"
+    [buttons]="alertButtons"
+  ></ion-alert>
+</ion-content>

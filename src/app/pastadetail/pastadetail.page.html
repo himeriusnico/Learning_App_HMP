@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>pastadetail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="pasta">
+    <img [src]="pasta.url" alt="{{ pasta.name }}">
+    <ion-card-header>
+      <ion-card-title>{{ pasta.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ pasta.description }}</p>
+      <p>Price: Rp {{ pasta.price }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
