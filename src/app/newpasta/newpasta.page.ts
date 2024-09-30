@@ -17,7 +17,7 @@ export class NewpastaPage implements OnInit {
   alertButtons = [{
     text: "OK",
     role: "confirm",
-    handle: () =>{
+    handler: () =>{
       this.router.navigate(['/pasta'])
     }
   }]
