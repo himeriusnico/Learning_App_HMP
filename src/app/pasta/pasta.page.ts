@@ -34,6 +34,7 @@ export class PastaPage implements OnInit {
       (data)=> {
         console.log("data:", data);
           this.pastas=data;
+          this.filteredPastas = data;
         }
      );
   }
