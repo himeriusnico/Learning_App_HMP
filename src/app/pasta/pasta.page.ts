@@ -9,6 +9,8 @@ import { FoodserviceService } from '../foodservice.service';
 export class PastaPage implements OnInit {
   jenistampilan:string = "accordion"
   pastas:any[]=[]
+  filteredPastas: any[] = [];
+  searchTerm: string = "";
   
   constructor(private foodservice: FoodserviceService){};
      
@@ -26,7 +28,20 @@ export class PastaPage implements OnInit {
    }
 
   ngOnInit() {
-    this.pastas=this.foodservice.pastas;
+    // this.pastas=this.foodservice.pastas;
+
+    this.foodservice.pastaList().subscribe(
+      (data)=> {
+        console.log("data:", data);
+          this.pastas=data;
+        }
+     );
+  }
+
+  filterPastas() {
+    this.filteredPastas = this.pastas.filter(pasta =>
+      pasta.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
 }

@@ -10,15 +10,29 @@
       <ion-title size="large">about</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
 
-<ion-content [fullscreen]="true">
-  <ul>
-    <li>
-      <a routerLink="/about/team">About team</a>
-    </li>
-    <li>
-      <a routerLink="/about/history">About history</a>
-    </li>
-  </ul>
+  <div id="frame">
+    <ion-avatar id="myAvatar">
+      <ion-img src="https://i.pravatar.cc/300?img=15"></ion-img>
+    </ion-avatar>
+  </div>
+
+  <ion-card class="agaknaik">
+    <ion-card-content class="tengah-atasberjarak">
+      Nama anda <br />
+      NRP anda <br />
+      Jurusan anda
+    </ion-card-content>
+  </ion-card>
+
+  <ion-content [fullscreen]="true">
+    <ul>
+      <li>
+        <a routerLink="/about/team">About team</a>
+      </li>
+      <li>
+        <a routerLink="/about/history">About history</a>
+      </li>
+    </ul>
+  </ion-content>
 </ion-content>

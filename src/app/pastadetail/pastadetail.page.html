@@ -6,13 +6,19 @@
 
 <ion-content>
   <ion-card *ngIf="pasta">
-    <img [src]="pasta.url" alt="{{ pasta.name }}">
+    <img [src]="pasta.url" alt="{{ pasta.name }}" />
     <ion-card-header>
       <ion-card-title>{{ pasta.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>{{ pasta.description }}</p>
       <p>Price: Rp {{ pasta.price }}</p>
+      <ion-item>
+        <ion-label>Pasta Recipe Instruction:</ion-label>
+        <ol>
+          <li *ngFor="let ins of pasta.instructions">{{ins.instruction}}</li>
+        </ol>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -16,6 +16,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterPastas()"
+  ></ion-searchbar>
+
   <ion-segment
     [(ngModel)]="jenistampilan"
     (ionChange)="gantiTampilan(jenistampilan)"
@@ -33,7 +38,7 @@
 
   <ion-list *ngIf="jenistampilan === 'accordion'">
     <ion-accordion-group>
-      <ion-accordion *ngFor="let pasta of pastas">
+      <ion-accordion *ngFor="let pasta of filteredPastas">
         <ion-item slot="header" color="light">
           <ion-label>{{ pasta.name }}</ion-label>
           <ion-badge *ngIf="pasta.spicy" color="danger" slot="end"
@@ -57,7 +62,12 @@
 
   <ion-list *ngIf="jenistampilan === 'card'">
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let pasta of pastas">
+      <ion-col
+        size="12"
+        size-md="6"
+        size-lg="4"
+        *ngFor="let pasta of filteredPastas"
+      >
         <ion-card>
           <ion-img [src]="pasta.url" alt="{{ pasta.name }}"></ion-img>
           <ion-card-header>
@@ -75,18 +85,20 @@
     </ion-row>
   </ion-list>
 
-  <ion-grid *ngIf="jenistampilan=='grid'">
-    <ion-row *ngFor="let pastas2 of chunkArray(pastas, 2); let i=index">
-      <ion-col *ngFor="let pasta of pastas2; let i2=index">
+  <ion-grid *ngIf="jenistampilan == 'grid'">
+    <ion-row
+      *ngFor="let pastas2 of chunkArray(filteredPastas, 2); let i = index"
+    >
+      <ion-col *ngFor="let pasta of pastas2; let i2 = index">
         <ion-list>
           <ion-item>
             <ion-img [src]="pasta.url"></ion-img>
           </ion-item>
-          <ion-item routerLink="/pastadetail/{{(i*2)+i2}}">
-            {{pasta.name}}
-            <ion-badge *ngIf="pasta.spicy" color="danger" slot="end"
-              >Spicy</ion-badge
-            >
+          <ion-item routerLink="/pastadetail/{{pasta.id}}">
+            {{ pasta.name }}
+            <ion-badge *ngIf="pasta.spicy" color="danger" slot="end">
+              Spicy
+            </ion-badge>
           </ion-item>
         </ion-list>
       </ion-col>
