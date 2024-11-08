@@ -44,5 +44,14 @@ export class PastaPage implements OnInit {
       pasta.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
-
+  
+  ionViewWillEnter(){
+    this.foodservice.pastaList().subscribe(
+      (data)=> {
+        console.log("data:", data);
+          this.pastas=data;
+          this.filteredPastas = data;
+        }
+     );
+  }
 }

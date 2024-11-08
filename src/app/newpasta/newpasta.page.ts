@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodserviceService } from '../foodservice.service';
 import { Router } from '@angular/router';
+import { PastaPage } from '../pasta/pasta.page';
 
 @Component({
   selector: 'app-newpasta',
@@ -37,7 +38,19 @@ export class NewpastaPage implements OnInit {
   }
 
   submitPasta(){
-    this.foodServices.addPasta(this.new_name, this.new_url, this.new_desc, this.new_price, this.is_spicy);
-    console.log("Data: ", this.foodServices.pastas);
+    // this.foodServices.addPasta(this.new_name, this.new_url, this.new_desc, this.new_price, this.is_spicy);
+    // console.log("Data: ", this.foodServices.pastas);
+    this.foodServices.addPasta(this.new_name,            
+      this.new_url,this.new_desc,this.new_price).subscribe((response: any) => {
+        if(response.result==='success'){
+          alert("success")
+          this.router.navigate(['/pasta'])
+        }
+        else
+        {
+          alert(response.message)
+        }
+   });
+
   }
 }
