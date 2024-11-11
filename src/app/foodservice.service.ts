@@ -9,6 +9,13 @@ export interface Instructions{
   instruction?: string
 }
 
+export interface user{
+  id: number,
+  username: string,
+  password: string,
+  fullname: string
+}
+
 export interface Pasta{
   id?: number,
   name?: string,
@@ -124,5 +131,16 @@ export class FoodserviceService {
     const urlEncodedData = body.toString();
 
     return this.http.post("https://ubaya.xyz/hybrid/160422019/add_instruction.php", urlEncodedData, { headers });
+  }
+
+  login(p_username: string, p_password: string){
+    const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    const body = new URLSearchParams();
+
+    body.set('username', p_username);
+    body.set('password', p_password);
+
+    const urlEncodedData = body.toString();
+    return this.http.post("https://ubaya.xyz/hybrid/160422019/login.php", urlEncodedData, { headers });
   }
 }
