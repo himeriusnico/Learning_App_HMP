@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodserviceService } from '../foodservice.service';
+import { DexieService } from '../dexie.service';
 
 @Component({
   selector: 'app-pasta',
@@ -12,7 +13,7 @@ export class PastaPage implements OnInit {
   filteredPastas: any[] = [];
   searchTerm: string = "";
   
-  constructor(private foodservice: FoodserviceService){};
+  constructor(private foodservice: FoodserviceService, private dex:DexieService){};
      
 
   gantiTampilan(event: any){
@@ -53,5 +54,14 @@ export class PastaPage implements OnInit {
           this.filteredPastas = data;
         }
      );
+  }
+
+  addtocart(id:number,name:string,price:number,num:number){
+    this.dex.addItem(id,name,price,num).then(() => {
+      alert('Item added successfully.');
+    })
+    .catch(error => {
+      alert('Error adding item:'+ error);
+    });
   }
 }

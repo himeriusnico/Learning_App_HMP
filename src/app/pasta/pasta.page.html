@@ -55,6 +55,11 @@
           <ion-item>
             <ion-label> Price: Rp {{ pasta.price }} </ion-label>
           </ion-item>
+          <ion-item>
+            <ion-button (click)="addtocart(pasta.id || 0,pasta.name || '',pasta.price || 0,1)">
+              Add to Cart
+            </ion-button>
+          </ion-item>
         </div>
       </ion-accordion>
     </ion-accordion-group>
