@@ -8,14 +8,14 @@ import { DexieService, MyItem } from '../dexie.service';
 })
 export class CartPage implements OnInit {
   items: MyItem[] = [];
-  grandTotal: number = 0; // Declare grandTotal property
+  grandTotal: number = 0; 
 
   constructor(private dex: DexieService) {}
 
   async loadItems() {
     try {
       this.items = await this.dex.getAllItems();
-      this.calculateGrandTotal(); // Calculate grand total after loading items
+      this.calculateGrandTotal(); 
     } catch (error) {
       console.error('Error fetching items:', error);
     }

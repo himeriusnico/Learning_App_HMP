@@ -41,7 +41,6 @@ export class DexieService extends Dexie {
     const existingItem = await this.myStore.where('id').equals(id).first();
 
     if (existingItem) {
-      // Item already exists, call increaseNum
       await this.increaseNum(existingItem.id);
     } else {
       await this.myStore.add({ id, name, price, num });
@@ -57,27 +56,21 @@ export class DexieService extends Dexie {
   }
 
   async increaseNum(itemId: number): Promise<void> {
-    // Get the item from the database
     const item = await this.myStore.get(itemId);
 
-    // If the item exists, increase the 'num' property by 1
     if (item) {
       item.num += 1;
-      // Update the item in the database
       await this.myStore.update(itemId, { num: item.num });
     }
   }
 
   async decreaseNum(itemId: number): Promise<void> {
-    // Get the item from the database
     const item = await this.myStore.get(itemId);
 
-    // If the item exists, decrease the 'num' property by 1
     if (item) {
       item.num -= 1;
 
       if (item.num <= 0) {
-        // If 'num' is zero or less, remove the item from the database
         await this.myStore.delete(itemId);
       } else {
         // Otherwise, update the item in the database
